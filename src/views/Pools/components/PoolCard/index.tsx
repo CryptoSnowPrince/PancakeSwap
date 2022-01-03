@@ -1,6 +1,7 @@
 import BigNumber from 'bignumber.js'
 import React from 'react'
-import { CardBody, Flex, Text, Tag, LockIcon, CardRibbon } from '@pancakeswap/uikit'
+// import { CardBody, Flex, Text, Tag, LockIcon, CardRibbon } from '@pancakeswap/uikit'
+import { CardBody, Flex, Text, Tag, CardRibbon } from '@pancakeswap/uikit'
 import ConnectWalletButton from 'components/ConnectWalletButton'
 import { useTranslation } from 'contexts/Localization'
 import { BIG_ZERO } from 'utils/bigNumber'
@@ -35,7 +36,8 @@ const PoolCard: React.FC<{ pool: DeserializedPool; account: string }> = ({ pool,
           <Text mb="5px" fontSize="16px" color="secondary">
             {t('Withdraw Lock')}
           </Text>
-          <Tag variant="primary" startIcon={<LockIcon width="14px" color="primary" mr="4px" />}>
+          {/* <Tag variant="primary" startIcon={<LockIcon width="14px" color="primary" mr="4px" />}> */}
+          <Tag variant="primary">
             {harvestInterval / 3600 / 24 + t('D')}
           </Tag>
           {/* <Text mb="5px" fontSize="16px" color="secondary">

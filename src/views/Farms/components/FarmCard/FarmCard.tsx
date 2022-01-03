@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import BigNumber from 'bignumber.js'
 import styled from 'styled-components'
-import { Card, Flex, Text, Skeleton, Tag, LockIcon, } from '@pancakeswap/uikit'
+import { Card, Flex, Text, Skeleton, Tag, } from '@pancakeswap/uikit'
+// import { Card, Flex, Text, Skeleton, Tag, LockIcon, } from '@pancakeswap/uikit'
 import { DeserializedFarm } from 'state/types'
 import { getBscScanLink } from 'utils'
 import { useTranslation } from 'contexts/Localization'
@@ -108,7 +109,8 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, displayApr, removed, cakePric
         )}
         <Flex justifyContent="space-between">
           <Text>{t('Withdraw Lock')}:</Text>
-          <Tag variant="primary" startIcon={<LockIcon width="14px" color="primary" mr="4px" />}>
+          {/* <Tag variant="primary" startIcon={<LockIcon width="14px" color="primary" mr="4px" />}> */}
+          <Tag variant="primary">
             {earnLabel}
           </Tag>
         </Flex>

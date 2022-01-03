@@ -22,18 +22,18 @@ const artistConfigBuilder = ({ t, isDark }: ArtistConfigType) => ({
     t('So that bunnies worldwide may fly to the moon.'),
   ],
   buttons: [
-    {
-      to: 'https://twitter.com/cecymeade',
-      text: t('Follow on Twitter'),
-      external: true,
-      icon: <TwitterIcon fillColor="white" />,
-    },
-    {
-      to: 'https://www.instagram.com/cecymeade/',
-      text: t('Follow on Instagram'),
-      external: true,
-      icon: <InstagramIcon color="white" />,
-    },
+    // {
+    //   to: 'https://twitter.com/cecymeade',
+    //   text: t('Follow on Twitter'),
+    //   external: true,
+    //   icon: <TwitterIcon fillColor="white" />,
+    // },
+    // {
+    //   to: 'https://www.instagram.com/cecymeade/',
+    //   text: t('Follow on Instagram'),
+    //   external: true,
+    //   icon: <InstagramIcon color="white" />,
+    // },
   ],
   image: { src: `/images/pancakeSquad/artist${isDark ? '-dark' : ''}.png`, alt: 'Chef Cecy bio' },
 })

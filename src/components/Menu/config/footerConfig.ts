@@ -2,7 +2,7 @@ import { FooterLinkType } from '@pancakeswap/uikit'
 import { ContextApi } from 'contexts/Localization/types'
 
 export const footerLinks: (t: ContextApi['t']) => FooterLinkType[] = (t) => [
-  {
+/*  {
     label: t('About'),
     items: [
       {
@@ -76,7 +76,7 @@ export const footerLinks: (t: ContextApi['t']) => FooterLinkType[] = (t) => [
         href: 'https://docs.pancakeswap.finance/hiring/become-a-chef',
       },
     ],
-  },
+  },*/
 ];
 
 export const tvl = [
