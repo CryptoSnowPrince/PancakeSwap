@@ -1,49 +1,39 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
 import { Heading, Button, Input } from '@pancakeswap/uikit'
-import { useWeb3React } from '@web3-react/core'
-import ConnectWalletButton from 'components/ConnectWalletButton'
-import useTheme from 'hooks/useTheme'
+// import { useWeb3React } from '@web3-react/core'
+// import ConnectWalletButton from 'components/ConnectWalletButton'
+// import useTheme from 'hooks/useTheme'
 
 function isWalletConnected() {
-  return false;
+  return true;
 }
 
 function getTotalRaisedAmount() {
-  return 2000;
+  return 20;
 }
 
 const NvdPresale = () => {
-  
+
   const [walletAddress, setWallet] = useState("");
   const [status, setStatus] = useState("");
   const [name, setName] = useState("");
-  const [bnbAmount, setBNBAmount] = useState(0.0);
+  const [bnbAmount, setBNBAmount] = useState(0);
   const [tokenAmount, setTokenAmount] = useState(0);
   const [description, setDescription] = useState("");
-  const [raisedBNB, setRaisedBNB] = useState(0);
+  const [raisedBNB, setRaisedBNB] = useState(2);
   const [url, setURL] = useState("");
   const [BNBStatus, setBNBStatus] = useState("");
 
-  enum ResultStatus {
-    NOT_VALID,
-    FOUND,
-    NOT_FOUND,
+  const buyTokenAmountChange = (evt: ChangeEvent<HTMLInputElement>) => {
+    if (Number.isNaN(parseInt(evt.target.value)) === true)
+    {
+      setTokenAmount(0)
+    }
+    else
+    {
+      setTokenAmount(parseInt(evt.target.value))
+    }
   }
-
-  const handleChange = (evt: ChangeEvent<HTMLInputElement>) => {
-    const { value: newValue } = evt.target
-    setState((prevState) => ({
-      ...prevState,
-      value: newValue,
-    }))
-  }
-
-  const initialState = {
-    isFetching: false,
-    resultFound: ResultStatus.NOT_VALID,
-    value: '',
-  }
-  const [state, setState] = useState(initialState);
 
   useEffect(() => { 
     // useEffect(async () => { //TODO: implement
@@ -56,8 +46,8 @@ const NvdPresale = () => {
   }, []);
 
   useEffect(() => {
-    setBNBAmount(tokenAmount / 5000);
-    if ((tokenAmount / 5000) < 0.1) setBNBStatus("BNB Amount should be over 0.1");
+    setBNBAmount(tokenAmount / 100000);
+    if ((tokenAmount / 100000) < 0.1) setBNBStatus("BNB Amount should be over 0.1");
     else setBNBStatus("");
   }, [tokenAmount])
 
@@ -91,33 +81,32 @@ const NvdPresale = () => {
       return;
     }
     // const { status } = await buyToken(bnbAmount);
-    // const { status } = await buyToken(bnbAmount);
     setStatus("status1");
   };
 
   const addWalletListener = () => {
-    // if (window.ethereum) {
-    //   window.ethereum.on("accountsChanged", (accounts) => {
-    //     if (accounts.length > 0) {
-    //       setWallet(accounts[0]);
-    //       setStatus("???? Put BNB Amount in the text-field above.");
-    //     } else {
-    //       setWallet("");
-    //       setStatus("?? Connect to Metamask using the top right button.");
-    //     }
-    //   })
-    // } else {
-    //   setStatus(
-    //     <p>
-    //       {" "}
-    //       ??{" "}
-    //       <a target="_blank" href={`https://metamask.io/download.html`}>
-    //         You must install Metamask, a virtual Ethereum wallet, in your
-    //         browser.
-    //       </a>
-    //     </p>
-    //   );  
-    // }
+    if (window.ethereum) {
+      // window.ethereum.on("accountsChanged", (accounts) => {
+      //   if (accounts.length > 0) {
+      //     setWallet(accounts[0]);
+      //     setStatus("???? Put BNB Amount in the text-field above.");
+      //   } else {
+      //     setWallet("");
+      //     setStatus("?? Connect to Metamask using the top right button.");
+      //   }
+      // })
+    } else {
+      // setStatus( 
+      //   <p>
+      //     {" "}
+      //     ??{" "}
+      //     <a target="_blank" href="https://metamask.io/download.html" rel="noreferrer">
+      //       You must install Metamask, a virtual Ethereum wallet, in your
+      //       browser.
+      //     </a>
+      //   </p>
+      // );  
+    }
   }
 
   return (
@@ -135,32 +124,24 @@ const NvdPresale = () => {
         <Heading scale="xl" color="secondary" mb="24px" textAlign="center">
         Total Raised: {raisedBNB} BNB
           <Heading scale="xl" color="secondary" mb="24px">
-          Total Token Sold: {raisedBNB*5000} NVD
+          Total Token Sold: {raisedBNB*100000} NVD
           </Heading>
 
           <Heading scale="xl" color="secondary" mb="24px">
-          Token Price: {1/5000}  BNB
+          Token Price: {1/100000}  BNB
           </Heading>
 
           <Heading scale="xl" color="secondary" mb="24px">
           NVD amount
           </Heading>
           <Input
+            id="buyTokenAmount"
             placeholder="0"
-            value={state.value}
-            onChange={handleChange}
+            value={tokenAmount}
+            onChange={buyTokenAmountChange}
             style={{ position: 'relative', marginLeft: (window.innerWidth - 120)/2 , zIndex: 16, paddingRight: '10px', maxWidth: '120px', textAlign: 'right'}}
           />
-         
-          {/* </div>
-          <input
-          type="text"
-          placeholder="0"
-          value={tokenAmount}
-          // onChange={(event) => setTokenAmount(event.target.value)}
-          /> */}
 
-          
           <Heading scale="xl" color="secondary" mb="24px">
           BNB Amount :
             { bnbAmount } BNB
@@ -169,11 +150,11 @@ const NvdPresale = () => {
           {BNBStatus}
           </Heading>
 
-          <Button id="mintButton" onClick={onBuyPressed} >
+          <Button id="buyButton" onClick={onBuyPressed} >
             BUY NVD Token
           </Button>
           <Heading id = "status" color='red' mb="20px">
-          {status}
+            {status}
           </Heading>
         </Heading>
       </div>
