@@ -2,7 +2,8 @@ import React, { ChangeEvent, useEffect, useState } from "react";
 import { Heading, Button, Input } from '@pancakeswap/uikit'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 
-
+// custom+
+import { useTokenContract, useTokenPreSaleContract } from 'hooks/useContract'
 
 // import React from 'react';
 // import { useWeb3React } from '@web3-react/core';
@@ -12,6 +13,8 @@ import Web3 from "web3";
 import axios from "axios";
 import dotenv from 'dotenv';
 import contractABI from './presale.json';
+
+
 
 dotenv.config();
 // require('dotenv').config();

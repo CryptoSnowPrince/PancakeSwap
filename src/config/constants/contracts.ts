@@ -96,10 +96,10 @@ export default {
   },
   TokenPreSale: {
     56: '0x3b1A8bDeA7fF848E534B965981B8D6ee99502b25',
-    97: '',
+    97: '0xb7937a04cFd9824AcBe91817d2FfefbDB4775184',
   },
   Token: {
     56: '0x64b14FC2ADFa92d52D3029dc481F375Bb405835a',
-    97: '',
+    97: '0x17a57c15b77d80d9977B7be0874b490Ad422BB90',
   },
 }
