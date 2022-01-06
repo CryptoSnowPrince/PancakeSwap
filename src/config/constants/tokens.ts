@@ -1811,7 +1811,7 @@ export const testnetTokens = {
   ),
   nmd: new Token(
     TESTNET,
-    '0xa35062141Fa33BCA92Ce69FeD37D0E8908868AAe',
+    '0xb7937a04cFd9824AcBe91817d2FfefbDB4775184', // rinkeby(not bsc testnet)
     18,
     'NMD',
     'Namo Mudra',

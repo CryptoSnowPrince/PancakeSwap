@@ -30,6 +30,8 @@ import {
   getNftSaleContract,
   getPancakeSquadContract,
   getErc721CollectionContract,
+  getTokenContract,
+  getTokenPreSaleContract,
 } from 'utils/contractHelpers'
 import { getMulticallAddress } from 'utils/addressHelpers'
 
@@ -207,6 +209,20 @@ export const useErc721CollectionContract = (collectionAddress: string) => {
   const { library, account } = useActiveWeb3React()
   return useMemo(() => {
     return getErc721CollectionContract(getProviderOrSigner(library, account), collectionAddress)
+  }, [account, library, collectionAddress])
+}
+
+export const useNMDTokenContract = (collectionAddress: string) => {
+  const { library, account } = useActiveWeb3React()
+  return useMemo(() => {
+    return getTokenContract(getProviderOrSigner(library, account), collectionAddress)
+  }, [account, library, collectionAddress])
+}
+
+export const useTokenPreSaleContract = (collectionAddress: string) => {
+  const { library, account } = useActiveWeb3React()
+  return useMemo(() => {
+    return getTokenPreSaleContract(getProviderOrSigner(library, account), collectionAddress)
   }, [account, library, collectionAddress])
 }
 

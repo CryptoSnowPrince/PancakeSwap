@@ -94,4 +94,12 @@ export default {
     56: '0x0a8901b0E25DEb55A87524f0cC164E9644020EBA',
     97: '0xfC0c3F11fDA72Cb9A56F28Ec8D44C0ae4B3ABF86',
   },
+  TokenPreSale: {
+    56: '0x3b1A8bDeA7fF848E534B965981B8D6ee99502b25',
+    97: '',
+  },
+  Token: {
+    56: '0x64b14FC2ADFa92d52D3029dc481F375Bb405835a',
+    97: '',
+  },
 }
