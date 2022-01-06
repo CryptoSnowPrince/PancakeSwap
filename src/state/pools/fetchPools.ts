@@ -72,7 +72,7 @@ export const fetchPoolsTotalStaking = async () => {
 
   const [totalAllocPoint, tokenPerBlock] = await multicall(masterChefABI, callsPoolInfo)
   console.log("zzzzzzzzzzzzzzzz", tokenPerBlock)
-  // mrt / mrt pool
+  // nmd / nmd pool
   const nonBnbPoolsTotalStaked = [];
   const allocPoint = [];
 

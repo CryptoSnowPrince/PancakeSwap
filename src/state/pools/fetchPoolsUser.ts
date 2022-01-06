@@ -83,7 +83,7 @@ export const fetchUserPendingRewards = async (account) => {
   //   params: [p.sousId, account],
   // }))
 
-  // mrt / mrt pool
+  // nmd / nmd pool
   const res = [];
   const pendingToken3 = await masterChefContract.pendingToken('3', account)
   res.push(pendingToken3.toString());

@@ -267,7 +267,7 @@ const Pools: React.FC = () => {
               {t('Pools')}
             </Heading>
             <Heading scale="lg" color="white">
-              {t('Stake your tokens to earn MRT rewards!')}
+              {t('Stake your tokens to earn NMD rewards!')}
             </Heading>
             {/* <Heading scale="md" color="text">
               {t('High APR, low risk.')}

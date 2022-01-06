@@ -45,7 +45,7 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
   return (
     <Wrapper>
       <Flex justifyContent="space-between">
-        <Text>{t('Total MRT-BNB Staked')}:</Text>
+        <Text>{t('Total NMD-BNB Staked')}:</Text>
         {totalLpValueFormatted ? <Text>{totalLpValueFormatted}</Text> : <Skeleton width={75} height={25} />}
       </Flex>
       <Flex justifyContent="space-between">
@@ -58,7 +58,7 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
       </Flex>
       {!removed && (
         <Flex mb="2px" justifyContent="flex-end">
-          <StyledLinkExternal href={addLiquidityUrl}>{t('Get MRT-BNB', { symbol: lpLabel })}</StyledLinkExternal>
+          <StyledLinkExternal href={addLiquidityUrl}>{t('Get NMD-BNB', { symbol: lpLabel })}</StyledLinkExternal>
         </Flex>
       )}
       <Flex mb="2px" justifyContent="flex-end">

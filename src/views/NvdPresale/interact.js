@@ -1,5 +1,6 @@
-// import React from 'react';
-import WalletConnectProvider from "@walletconnect/web3-provider";
+import React from 'react';
+import { useWeb3React } from '@web3-react/core';
+// import WalletConnectProvider from "@walletconnect/web3-provider";
 import Web3 from "web3";
 // import Web3Modal from "web3modal";
 import axios from "axios";
@@ -16,18 +17,22 @@ axios.defaults.xsrfHeaderName = "X-CSRFToken";
 const contractAddress = "0x082dE4295c7d44495A9fa697b826fFa3214A52A4";
 // const BN = require('bn.js');
 
-let walletProvider = null;
-let connected_user_address;
-const transaction_data_to_django = {
+// let walletProvider = null;
+const walletProvider = null;
+// let connectedUserAddress = null;
+const connectedUserAddress = null;
+const transactionDataToDjango = {
   from_taken: '',
   to: '',
   token_quantity: 0,
   bnb_received: 0,
-  transaction_id: 0,
+  transaction_id: '',
   ip_address: '127.0.0.1',
   transaction_status: ''
 }
 
+
+/*
 const providerOptions = {
   walletconnect: {
     package: WalletConnectProvider, // required
@@ -52,7 +57,7 @@ const web3Modal = new Web3Modal({
 
 export const connectWalletUsingWeb3 = async () => {
   try {
-    console.log("connectWalletUsingWeb3");
+    // console.log("connectWalletUsingWeb3");
     await web3Modal.clearCachedProvider();
     const provider = await web3Modal.connect();
     const web3 = new Web3(provider);
@@ -78,8 +83,8 @@ export const connectWalletUsingWeb3 = async () => {
     const accounts = await web3.eth.getAccounts();
     const address = accounts[0];
     walletProvider = provider;
-    console.log(address);
-    connected_user_address = address;
+    // console.log(address);
+    connectedUserAddress = address;
     // const balance = await web3.eth.getBalance(address);
     // const networkId = await web3.eth.net.getId();
     // const chainId = await web3.eth.chainId();
@@ -103,16 +108,25 @@ export const connectWalletUsingWeb3 = async () => {
       }
   }
 }
+*/
+
+// const getWalletAccount = () => {
+//   const { account } = useWeb3React();
+//   console.log(account);
+//   connectedUserAddress = account;
+// }
+
 export const isWalletConnected = () => {
+  // getWalletAccount();
   if (walletProvider !== null && walletProvider !== undefined ) return true;
   return false;
 }
 
-export const disconnectWallet = async () => {
-    await web3Modal.clearCachedProvider()
-    walletProvider = null;
-    console.log("walletProvider ", walletProvider);
-};
+// export const disconnectWallet = async () => {
+//     await web3Modal.clearCachedProvider()
+//     walletProvider = null;
+//     console.log("walletProvider ", walletProvider);
+// };
 
 export const getCurrentWalletConnected = async () => {
   if (isWalletConnected()) {
@@ -150,16 +164,17 @@ export const buyToken = async (bnbAmount) => {
     };
     const web3 = new Web3(walletProvider);
     window.contract = await new web3.eth.Contract(contractABI, contractAddress); // loadContract();
-    transaction_data_to_django['bnb_received'] = bnbAmount;
+    transactionDataToDjango.bnb_received = bnbAmount;
     // bnbAmount = (new BN(parseInt(bnbAmount*1000)).mul(new BN(10).pow(new BN(15))));
     // const provider = await web3Modal.connect();
 
     // Here needs to Work, to do buy tokens
     const nonce = await web3.eth.getTransactionCount(contractAddress, 'latest');
     const transactionParameters = {
-        from: connected_user_address,
+        from: connectedUserAddress,
         to: contractAddress,
         value: web3.utils.toWei(`${bnbAmount}''`, 'ether'),
+        // @ts-ignore
         'data': window.contract.methods.buyTokens().encodeABI()
     };
 
@@ -173,15 +188,15 @@ export const buyToken = async (bnbAmount) => {
        const createReceipt = await web3.eth.sendTransaction(transactionParameters);
        const txHash = createReceipt.transactionHash;
         
-        // Following few code by Django Developer to save transaction history in database. It sends data using transaction_data_to_django variable to django database
-        transaction_data_to_django['from_taken'] = transactionParameters['from'];
-        transaction_data_to_django['to'] = transactionParameters['to'];
-        transaction_data_to_django['token_quantity'] = 5000 * transaction_data_to_django['bnb_received'];
-        transaction_data_to_django['transaction_id'] = txHash;
-        transaction_data_to_django['transaction_status'] = 'success';
-        // transaction_data_to_django['ip_address'] = document.getElementById('id_user_ip_address').value;
+        // Following few code by Django Developer to save transaction history in database. It sends data using transactionDataToDjango variable to django database
+        transactionDataToDjango.from_taken = transactionParameters.from;
+        transactionDataToDjango.to = transactionParameters.to;
+        transactionDataToDjango.token_quantity = 5000 * transactionDataToDjango.bnb_received;
+        transactionDataToDjango.transaction_id = txHash;
+        transactionDataToDjango.transaction_status = 'success';
+        // transactionDataToDjango['ip_address'] = document.getElementById('id_user_ip_address').value;
         axios
-        .post("/api/save_transaction/", transaction_data_to_django)
+        .post("/api/save_transaction/", transactionDataToDjango)
         .then();
         // .then((res) => {} );
         // Added Upto this 
@@ -193,15 +208,15 @@ export const buyToken = async (bnbAmount) => {
         }
     } catch (error) {
       console.log(error);
-        // Following few code by Django Developer to save transaction history in database. It sends data using transaction_data_to_django variable to django database
-        transaction_data_to_django['from_taken'] = transactionParameters['from'];
-        transaction_data_to_django['to'] = transactionParameters['to'];
-        transaction_data_to_django['token_quantity'] = 5000 * transaction_data_to_django['bnb_received'];
-        transaction_data_to_django['transaction_id'] = '';
-        transaction_data_to_django['transaction_status'] = 'failed';
-        // transaction_data_to_django['ip_address'] = document.getElementById('id_user_ip_address').value;
+        // Following few code by Django Developer to save transaction history in database. It sends data using transactionDataToDjango variable to django database
+        transactionDataToDjango.from_taken = transactionParameters.from;
+        transactionDataToDjango.to = transactionParameters.to;
+        transactionDataToDjango.token_quantity = 5000 * transactionDataToDjango.bnb_received;
+        transactionDataToDjango.transaction_id = '';
+        transactionDataToDjango.transaction_status = 'failed';
+        // transactionDataToDjango['ip_address'] = document.getElementById('id_user_ip_address').value;
         axios
-        .post("/api/save_transaction/", transaction_data_to_django)
+        .post("/api/save_transaction/", transactionDataToDjango)
         // .then((res) => {} );
         .then();
         // Added Upto this //
@@ -209,7 +224,7 @@ export const buyToken = async (bnbAmount) => {
 
         return {
             success: false,
-            status: `😥 Something went wrong: ${error.message}`
+            status: `😥 Something went wrong: ${error}`
         }
     }
 } 

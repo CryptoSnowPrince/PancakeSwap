@@ -21,13 +21,13 @@ export const mainnetTokens = {
     'Wrapped BNB',
     'https://www.binance.com/',
   ),
-  mrt: new Token(
+  nmd: new Token(
     MAINNET,
-    '0xb15f39d979208F05474CF4B8f66Fd46f6f4A77f3',
+    '0x64b14FC2ADFa92d52D3029dc481F375Bb405835a',
     18,
-    'MRT',
-    'Meta Rewards',
-    'https://metarewardstoken.com/',
+    'NMD',
+    'Namo Mudra',
+    'https://token-icolaunch-2021.web.app/',
   ),
   // bnb here points to the wbnb contract. Wherever the currency BNB is required, conditional checks for the symbol 'BNB' can be used
   bnb: new Token(MAINNET, '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c', 18, 'BNB', 'BNB', 'https://www.binance.com/'),
@@ -1809,13 +1809,13 @@ export const testnetTokens = {
     'Wrapped BNB',
     'https://www.binance.com/',
   ),
-  mrt: new Token(
+  nmd: new Token(
     TESTNET,
     '0xa35062141Fa33BCA92Ce69FeD37D0E8908868AAe',
     18,
-    'MRT',
-    'Meta Rewards',
-    'https://metarewardstoken.com/',
+    'NMD',
+    'Namo Mudra',
+    'https://token-icolaunch-2021.web.app/',
   ),
   cake: new Token(
     TESTNET,

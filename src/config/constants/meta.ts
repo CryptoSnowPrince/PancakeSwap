@@ -2,9 +2,9 @@ import { ContextApi } from 'contexts/Localization/types'
 import { PageMeta } from './types'
 
 export const DEFAULT_META: PageMeta = {
-  title: 'Meta Rewards',
+  title: 'Namo Mudra',
   description:
-    'The most popular AMM on BSC by user count! Earn CAKE through yield farming or win it in the Lottery, then stake it in Syrup Pools to earn more tokens! Initial Farm Offerings (new token launch model pioneered by Meta Rewards), NFTs, and more, on a platform you can trust.',
+    'The most popular AMM on BSC by user count! Earn CAKE through yield farming or win it in the Lottery, then stake it in Syrup Pools to earn more tokens! Initial Farm Offerings (new token launch model pioneered by Namo Mudra), NFTs, and more, on a platform you can trust.',
   image: 'https://pancakeswap.finance/images/hero.png',
 }
 
@@ -33,106 +33,106 @@ export const getCustomMeta = (path: string, t: ContextApi['t']): PageMeta => {
   switch (basePath) {
     case '/':
       return {
-        title: `${t('Home')} | ${t('Meta Rewards')}`,
+        title: `${t('Home')} | ${t('Namo Mudra')}`,
       }
     case '/swap':
       return {
-        title: `${t('Exchange')} | ${t('Meta Rewards')}`,
+        title: `${t('Exchange')} | ${t('Namo Mudra')}`,
       }
     case '/add':
       return {
-        title: `${t('Add Liquidity')} | ${t('Meta Rewards')}`,
+        title: `${t('Add Liquidity')} | ${t('Namo Mudra')}`,
       }
     case '/remove':
       return {
-        title: `${t('Remove Liquidity')} | ${t('Meta Rewards')}`,
+        title: `${t('Remove Liquidity')} | ${t('Namo Mudra')}`,
       }
     case '/liquidity':
       return {
-        title: `${t('Liquidity')} | ${t('Meta Rewards')}`,
+        title: `${t('Liquidity')} | ${t('Namo Mudra')}`,
       }
     case '/find':
       return {
-        title: `${t('Import Pool')} | ${t('Meta Rewards')}`,
+        title: `${t('Import Pool')} | ${t('Namo Mudra')}`,
       }
     case '/competition':
       return {
-        title: `${t('Trading Battle')} | ${t('Meta Rewards')}`,
+        title: `${t('Trading Battle')} | ${t('Namo Mudra')}`,
       }
     case '/prediction':
       return {
-        title: `${t('Prediction')} | ${t('Meta Rewards')}`,
+        title: `${t('Prediction')} | ${t('Namo Mudra')}`,
       }
     case '/prediction/leaderboard':
       return {
-        title: `${t('Leaderboard')} | ${t('Meta Rewards')}`,
+        title: `${t('Leaderboard')} | ${t('Namo Mudra')}`,
       }
     case '/farms':
       return {
-        title: `${t('Farms')} | ${t('Meta Rewards')}`,
+        title: `${t('Farms')} | ${t('Namo Mudra')}`,
       }
     case '/farms/auction':
       return {
-        title: `${t('Farm Auctions')} | ${t('Meta Rewards')}`,
+        title: `${t('Farm Auctions')} | ${t('Namo Mudra')}`,
       }
     case '/pools':
       return {
-        title: `${t('Pools')} | ${t('Meta Rewards')}`,
+        title: `${t('Pools')} | ${t('Namo Mudra')}`,
       }
     case '/lottery':
       return {
-        title: `${t('Lottery')} | ${t('Meta Rewards')}`,
+        title: `${t('Lottery')} | ${t('Namo Mudra')}`,
       }
     case '/ifo':
       return {
-        title: `${t('Initial Farm Offering')} | ${t('Meta Rewards')}`,
+        title: `${t('Initial Farm Offering')} | ${t('Namo Mudra')}`,
       }
     case '/teams':
       return {
-        title: `${t('Leaderboard')} | ${t('Meta Rewards')}`,
+        title: `${t('Leaderboard')} | ${t('Namo Mudra')}`,
       }
     case '/voting':
       return {
-        title: `${t('Voting')} | ${t('Meta Rewards')}`,
+        title: `${t('Voting')} | ${t('Namo Mudra')}`,
       }
     case '/voting/proposal':
       return {
-        title: `${t('Proposals')} | ${t('Meta Rewards')}`,
+        title: `${t('Proposals')} | ${t('Namo Mudra')}`,
       }
     case '/voting/proposal/create':
       return {
-        title: `${t('Make a Proposal')} | ${t('Meta Rewards')}`,
+        title: `${t('Make a Proposal')} | ${t('Namo Mudra')}`,
       }
     case '/info':
       return {
-        title: `${t('Overview')} | ${t('Meta Rewards Info & Analytics')}`,
-        description: 'View statistics for Meta Rewards exchanges.',
+        title: `${t('Overview')} | ${t('Namo Mudra Info & Analytics')}`,
+        description: 'View statistics for Namo Mudra exchanges.',
       }
     case '/info/pools':
       return {
-        title: `${t('Pools')} | ${t('Meta Rewards Info & Analytics')}`,
-        description: 'View statistics for Meta Rewards exchanges.',
+        title: `${t('Pools')} | ${t('Namo Mudra Info & Analytics')}`,
+        description: 'View statistics for Namo Mudra exchanges.',
       }
     case '/info/tokens':
       return {
-        title: `${t('Tokens')} | ${t('Meta Rewards Info & Analytics')}`,
-        description: 'View statistics for Meta Rewards exchanges.',
+        title: `${t('Tokens')} | ${t('Namo Mudra Info & Analytics')}`,
+        description: 'View statistics for Namo Mudra exchanges.',
       }
     case '/nfts':
       return {
-        title: `${t('Overview')} | ${t('Meta Rewards')}`,
+        title: `${t('Overview')} | ${t('Namo Mudra')}`,
       }
     case '/nfts/collections':
       return {
-        title: `${t('Collections')} | ${t('Meta Rewards')}`,
+        title: `${t('Collections')} | ${t('Namo Mudra')}`,
       }
     case '/nfts/profile':
       return {
-        title: `${t('Your Profile')} | ${t('Meta Rewards')}`,
+        title: `${t('Your Profile')} | ${t('Namo Mudra')}`,
       }
     case '/pancake-squad':
       return {
-        title: `${t('Pancake Squad')} | ${t('Meta Rewards')}`,
+        title: `${t('Pancake Squad')} | ${t('Namo Mudra')}`,
       }
     default:
       return null

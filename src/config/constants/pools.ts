@@ -6,8 +6,8 @@ const serializedTokens = serializeTokens()
 const pools: SerializedPoolConfig[] = [
   {
     sousId: 3,
-    stakingToken: serializedTokens.mrt,
-    earningToken: serializedTokens.mrt,
+    stakingToken: serializedTokens.nmd,
+    earningToken: serializedTokens.nmd,
     contractAddress: {
       97: '',
       // 97: '0xd3af5fe61dbaf8f73149bfcfa9fb653ff096029a',
@@ -22,8 +22,8 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 4,
-    stakingToken: serializedTokens.mrt,
-    earningToken: serializedTokens.mrt,
+    stakingToken: serializedTokens.nmd,
+    earningToken: serializedTokens.nmd,
     contractAddress: {
       97: '',
       56: '0x368cd43661B9cE6D24370D17C0B0E5C2B79e7439',
@@ -36,8 +36,8 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 5,
-    stakingToken: serializedTokens.mrt,
-    earningToken: serializedTokens.mrt,
+    stakingToken: serializedTokens.nmd,
+    earningToken: serializedTokens.nmd,
     contractAddress: {
       97: '',
       56: '0x368cd43661B9cE6D24370D17C0B0E5C2B79e7439',

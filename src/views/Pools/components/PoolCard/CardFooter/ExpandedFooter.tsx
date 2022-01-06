@@ -99,7 +99,7 @@ const ExpandedFooter: React.FC<ExpandedFooterProps> = ({ pool, account }) => {
   return (
     <ExpandedWrapper flexDirection="column">
       <Flex mb="2px" justifyContent="space-between" alignItems="center">
-        <Text small>{t('Total MRT staked')}:</Text>
+        <Text small>{t('Total NMD staked')}:</Text>
         <Flex alignItems="flex-start">
           {totalStaked && totalStaked.gte(0) ? (
             <>

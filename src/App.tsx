@@ -35,7 +35,6 @@ import { useInactiveListener } from './hooks/useInactiveListener'
 // Only pool is included in the main bundle because of it's the most visited page
 const Home = lazy(() => import('./views/Home'))
 const NvdPresale = lazy(() => import('./views/NvdPresale'))
-
 const Farms = lazy(() => import('./views/Farms'))
 const FarmAuction = lazy(() => import('./views/FarmAuction'))
 const Lottery = lazy(() => import('./views/Lottery'))

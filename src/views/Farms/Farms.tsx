@@ -120,7 +120,7 @@ const Farms: React.FC = () => {
   const { t } = useTranslation()
   const { data: farmsLP, userDataLoaded } = useFarms()
   const cakePrice = usePriceCakeBusd()
-  const lpPrice = useLpTokenPrice("MRT-BNB LP")
+  const lpPrice = useLpTokenPrice("NMD-BNB LP")
   
   const [query, setQuery] = useState('')
   const [viewMode, setViewMode] = useUserFarmsViewMode()
@@ -351,7 +351,7 @@ const Farms: React.FC = () => {
           {t('Farms')}
         </Heading>
         <Heading scale="lg" color="white">
-          {t('Stake LP to earn more Meta Rewards Tokens.')}
+          {t('Stake LP to earn more Namo Mudra Tokens.')}
         </Heading>
       </PageHeader>
       <Page>

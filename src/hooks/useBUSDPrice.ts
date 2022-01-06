@@ -70,7 +70,7 @@ export default function useBUSDPrice(currency?: Currency): Price | undefined {
 }
 
 export const useCakeBusdPrice = (): Price | undefined => {
-  const cakeBusdPrice = useBUSDPrice(tokens.mrt)
+  const cakeBusdPrice = useBUSDPrice(tokens.nmd)
   return cakeBusdPrice
 }
 
