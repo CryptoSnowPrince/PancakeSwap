@@ -29,7 +29,7 @@ import {
   getNftMarketAddress,
   getNftSaleAddress,
   getPancakeSquadAddress,
-  getTokenAddress,
+  getNMDTokenAddress,
   getTokenPreSaleAddress,
 } from 'utils/addressHelpers'
 
@@ -67,9 +67,9 @@ import nftMarketAbi from 'config/abi/nftMarket.json'
 import nftSaleAbi from 'config/abi/nftSale.json'
 import pancakeSquadAbi from 'config/abi/pancakeSquad.json'
 import erc721CollectionAbi from 'config/abi/erc721collection.json'
-import TokenAbi from 'config/abi/Token.json'
+import NMDTokenAbi from 'config/abi/NMDToken.json'
 import TokenPreSaleAbi from 'config/abi/TokenPreSale.json'
-import { ChainLinkOracleContract, FarmAuctionContract, PancakeProfileContract, PredictionsContract } from './types'
+import { ChainLinkOracleContract, FarmAuctionContract, TokenPreSaleContract, PancakeProfileContract, PredictionsContract } from './types'
 
 const getContract = (abi: any, address: string, signer?: ethers.Signer | ethers.providers.Provider) => {
   const signerOrProvider = signer ?? simpleRpcProvider
@@ -175,8 +175,8 @@ export const getErc721CollectionContract = (signer?: ethers.Signer | ethers.prov
   return getContract(erc721CollectionAbi, address, signer)
 }
 export const getTokenContract = (signer?: ethers.Signer | ethers.providers.Provider, address?: string) => {
-  return getContract(TokenAbi, address, signer)
+  return getContract(NMDTokenAbi, getNMDTokenAddress(), signer)
 }
 export const getTokenPreSaleContract = (signer?: ethers.Signer | ethers.providers.Provider, address?: string) => {
-  return getContract(TokenPreSaleAbi, address, signer)
+  return getContract(TokenPreSaleAbi, getTokenPreSaleAddress(), signer) as TokenPreSaleContract
 }

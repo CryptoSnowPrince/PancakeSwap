@@ -73,9 +73,9 @@ export const getNftSaleAddress = () => {
 export const getPancakeSquadAddress = () => {
   return getAddress(addresses.pancakeSquad)
 }
-export const getTokenAddress = () => {
-  return getAddress(addresses.pancakeSquad)
+export const getNMDTokenAddress = () => {
+  return getAddress(addresses.NMDToken)
 }
 export const getTokenPreSaleAddress = () => {
-  return getAddress(addresses.pancakeSquad)
+  return getAddress(addresses.TokenPreSale)
 }

@@ -106,6 +106,12 @@ export interface FarmAuctionContract extends Contract {
   auctionsHistory: ContractFunction<AuctionsHistoryResponse>
 }
 
+export interface TokenPreSaleContract extends Contract {
+  getTokenPrice: ContractFunction<ethers.BigNumber>
+  buyTokens: ContractFunction
+  setTokenPrice: ContractFunction
+}
+
 // Profile contract
 // [userId, points, teamId, tokenId, collectionAddress isActive]
 export type GetUserProfileResponse = [

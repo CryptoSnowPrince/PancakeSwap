@@ -3,7 +3,6 @@ import { Heading, Button, Input } from '@pancakeswap/uikit'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 
 // custom+
-import { useTokenContract, useTokenPreSaleContract } from 'hooks/useContract'
 
 // import React from 'react';
 // import { useWeb3React } from '@web3-react/core';
@@ -12,9 +11,8 @@ import Web3 from "web3";
 // import Web3Modal from "web3modal";
 import axios from "axios";
 import dotenv from 'dotenv';
+import BuyToken from './BuyToken';
 import contractABI from './presale.json';
-
-
 
 dotenv.config();
 // require('dotenv').config();
@@ -216,13 +214,18 @@ const NvdPresale = () => {
   //   }
   // };
 
-  const onBuyPressed = async () => { 
+  const OnBuyPressed = async () => { 
     if (!isWalletConnected()) {
       setStatus("Connect your Wallet.");
       return;
     }
     const { status_ } = await buyToken(bnbAmount);
     setStatus(status_);
+  };
+
+  const OnTestFunc = () => { 
+    // const tokenprice = GetTokenPrice()
+    // console.log(`onTectFunc ${tokenprice}`);
   };
 
   // const addWalletListener = () => {
@@ -293,12 +296,16 @@ const NvdPresale = () => {
           {BNBStatus}
           </Heading>
 
-          <Button id="buyButton" onClick={onBuyPressed} >
+          <Button id="buyButton" onClick={OnBuyPressed} >
             BUY NVD Token
+          </Button>
+          <Button id="testBTN" onClick={OnTestFunc} >
+            testBTN
           </Button>
           <Heading id = "status" color='red' mb="20px">
             {status !== "rendercom" ? status : rendercom()}
           </Heading>
+          <BuyToken />
         </Heading>
       </div>
   );

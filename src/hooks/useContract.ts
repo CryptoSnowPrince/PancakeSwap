@@ -212,18 +212,18 @@ export const useErc721CollectionContract = (collectionAddress: string) => {
   }, [account, library, collectionAddress])
 }
 
-export const useNMDTokenContract = (collectionAddress: string) => {
+export const useNMDTokenContract = () => {
   const { library, account } = useActiveWeb3React()
   return useMemo(() => {
-    return getTokenContract(getProviderOrSigner(library, account), collectionAddress)
-  }, [account, library, collectionAddress])
+    return getTokenContract(getProviderOrSigner(library, account))
+  }, [account, library])
 }
 
-export const useTokenPreSaleContract = (collectionAddress: string) => {
+export const useTokenPreSaleContract = () => {
   const { library, account } = useActiveWeb3React()
   return useMemo(() => {
-    return getTokenPreSaleContract(getProviderOrSigner(library, account), collectionAddress)
-  }, [account, library, collectionAddress])
+    return getTokenPreSaleContract(getProviderOrSigner(library, account))
+  }, [account, library])
 }
 
 // Code below migrated from Exchange useContract.ts
