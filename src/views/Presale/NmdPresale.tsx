@@ -14,7 +14,6 @@ const NmdPresale = () => {
   const [tokenAmountPerBNB, setTokenAmountPerBNB] = useState(0);
   const [totaltokensold, setTotalTokenSold] = useState(0)
   const [raisedBNB, setRaisedBNB] = useState("");
-  const [status, setStatus] = useState("");
   const [bnbAmount, setBNBAmount] = useState(0.0);
   const [tokenAmount, setTokenAmount] = useState(0);
   const [BNBStatus, setBNBStatus] = useState("");
@@ -62,53 +61,18 @@ const NmdPresale = () => {
     if ((tokenAmount / 100000) < 0.01) setBNBStatus("BNB Amount should be over 0.01");
     else setBNBStatus("");
   }, [tokenAmount])
-
-  useEffect(() => {
-    async function fetchData() {
-    //   const raisedAmount = await getTotalRaisedAmount();
-    //   setRaisedBNB(parseInt(raisedAmount));
-      // console.log("raisedAmount =", raisedAmount);
-    }
-    fetchData();
-  }, [status])
   
   const handleBuyPressed = async () => { 
     setPendingTx(true);
     try{
-    setPendingTx(false);
+        // await onBuyNMDToken()
+        setPendingTx(false);
     }
     catch (e)
     {
-    setPendingTx(false);
+        setPendingTx(false);
     }
   };
-  
-  const handleTestFunc = async () => { 
-    setPendingTx(true);
-    try{
-      await onSetNMDTokenprice(100000)
-      setPendingTx(false);
-    }
-
-    catch (e)
-    {
-      console.error('Failed to setTokenPrice', e)
-      setPendingTx(false);
-    }
-  };
-
-  const rendercom = () => {
-    return (
-      <p>
-        {" "}
-        🦊{" "}
-        <a target="_blank" href="https://metamask.io/download.html" rel="noreferrer">
-          You must install Metamask, a virtual Ethereum wallet, in your
-          browser.
-        </a>
-      </p>
-    );  
-  }
 
   return (
     <div>
@@ -125,6 +89,7 @@ const NmdPresale = () => {
           <Heading scale="xl" color="secondary" mb="24px">
           NMD amount
           </Heading>
+          
           <Input
             id="buyTokenAmount"
             placeholder=""
@@ -137,6 +102,7 @@ const NmdPresale = () => {
           BNB Amount :
             { bnbAmount } BNB
           </Heading>
+
           <Heading color='red' mb="20px">
           {BNBStatus}
           </Heading>
@@ -144,12 +110,7 @@ const NmdPresale = () => {
           <Button id="buyButton" onClick={handleBuyPressed} >
             BUY NMD Token
           </Button>
-          <Button id="testBTN" onClick={handleTestFunc} >
-            testBTN
-          </Button>
-          <Heading id = "status" color='red' mb="20px">
-            {status !== "rendercom" ? status : rendercom()}
-          </Heading>
+
           <Heading id = "pending" color='red' mb="20px">
             {pendingTx === true ? "pending" : ""}
             count={count.toString()}
