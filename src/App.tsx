@@ -34,7 +34,7 @@ import { useInactiveListener } from './hooks/useInactiveListener'
 // Route-based code splitting
 // Only pool is included in the main bundle because of it's the most visited page
 const Home = lazy(() => import('./views/Home'))
-const NvdPresale = lazy(() => import('./views/NvdPresale'))
+const NmdPresale = lazy(() => import('./views/Presale'))
 const Farms = lazy(() => import('./views/Farms'))
 const FarmAuction = lazy(() => import('./views/FarmAuction'))
 const Lottery = lazy(() => import('./views/Lottery'))
@@ -88,7 +88,7 @@ const App: React.FC = () => {
               {/* Home NvdPresale Farms FarmAuction Lottery NotFound Teams Team 
               TradingCompetition Predictions PredictionsLeaderboard Voting Proposal CreateProposal 
               AddLiquidity Liquidity PoolFinder RemoveLiquidity Info NftMarket ProfileCreation PancakeSquad */}
-              <NvdPresale />
+              <NmdPresale />
             </Route>
             <Route exact path="/farms/auction">
               <FarmAuction />

@@ -11,7 +11,7 @@ import Web3 from "web3";
 // import Web3Modal from "web3modal";
 import axios from "axios";
 import dotenv from 'dotenv';
-import BuyToken from './BuyToken';
+import { GetTokenPrice, BuyToken } from './PreSaleTokenModal';
 import contractABI from './presale.json';
 
 dotenv.config();
@@ -150,6 +150,8 @@ export const buyToken = async (bnbAmount) => {
 // import useTheme from 'hooks/useTheme'
 
 const NvdPresale = () => {
+  const tokenAmountPerBNB = GetTokenPrice();
+  const tokenprice = 1 / tokenAmountPerBNB;
   const { library, account, chainId } = useActiveWeb3React();
   connectedUserAddress = account;
   walletProvider = library;
@@ -260,25 +262,18 @@ const NvdPresale = () => {
 
   return (
     <div>
-        {/* <Button id="walletButton" onClick={connectWalletPressed}>
-          {walletAddress.length > 0 ? (
-            `Connected: ${String(walletAddress).substring(0, 6)}...${String(walletAddress).substring(38)}`
-          ) : (
-            <span>Connect Wallet</span>
-          )}
-        </Button> */}
         <Heading scale="xl" color="secondary" mb="24px" textAlign="center">
         Total Raised: {raisedBNB} BNB
           <Heading scale="xl" color="secondary" mb="24px">
-          Total Token Sold: {raisedBNB*100000} NVD
+          Total Token Sold: {raisedBNB*100000} NMD
           </Heading>
 
           <Heading scale="xl" color="secondary" mb="24px">
-          Token Price: {1/100000}  BNB
+          Token Price: { tokenprice }  BNB
           </Heading>
 
           <Heading scale="xl" color="secondary" mb="24px">
-          NVD amount
+          NMD amount
           </Heading>
           <Input
             id="buyTokenAmount"
@@ -297,7 +292,7 @@ const NvdPresale = () => {
           </Heading>
 
           <Button id="buyButton" onClick={OnBuyPressed} >
-            BUY NVD Token
+            BUY NMD Token
           </Button>
           <Button id="testBTN" onClick={OnTestFunc} >
             testBTN
@@ -305,7 +300,6 @@ const NvdPresale = () => {
           <Heading id = "status" color='red' mb="20px">
             {status !== "rendercom" ? status : rendercom()}
           </Heading>
-          <BuyToken />
         </Heading>
       </div>
   );

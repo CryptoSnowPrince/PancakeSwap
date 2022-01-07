@@ -112,6 +112,10 @@ export interface TokenPreSaleContract extends Contract {
   setTokenPrice: ContractFunction
 }
 
+export interface NMDTokenContract extends Contract {
+  balanceof: ContractFunction<ethers.BigNumber>
+}
+
 // Profile contract
 // [userId, points, teamId, tokenId, collectionAddress isActive]
 export type GetUserProfileResponse = [

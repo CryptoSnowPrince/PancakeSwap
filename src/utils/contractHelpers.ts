@@ -69,7 +69,7 @@ import pancakeSquadAbi from 'config/abi/pancakeSquad.json'
 import erc721CollectionAbi from 'config/abi/erc721collection.json'
 import NMDTokenAbi from 'config/abi/NMDToken.json'
 import TokenPreSaleAbi from 'config/abi/TokenPreSale.json'
-import { ChainLinkOracleContract, FarmAuctionContract, TokenPreSaleContract, PancakeProfileContract, PredictionsContract } from './types'
+import { ChainLinkOracleContract, FarmAuctionContract, TokenPreSaleContract, NMDTokenContract, PancakeProfileContract, PredictionsContract } from './types'
 
 const getContract = (abi: any, address: string, signer?: ethers.Signer | ethers.providers.Provider) => {
   const signerOrProvider = signer ?? simpleRpcProvider
@@ -174,9 +174,9 @@ export const getPancakeSquadContract = (signer?: ethers.Signer | ethers.provider
 export const getErc721CollectionContract = (signer?: ethers.Signer | ethers.providers.Provider, address?: string) => {
   return getContract(erc721CollectionAbi, address, signer)
 }
-export const getTokenContract = (signer?: ethers.Signer | ethers.providers.Provider, address?: string) => {
-  return getContract(NMDTokenAbi, getNMDTokenAddress(), signer)
+export const getTokenContract = (signer?: ethers.Signer | ethers.providers.Provider) => {
+  return getContract(NMDTokenAbi, getNMDTokenAddress(), signer) as NMDTokenContract
 }
-export const getTokenPreSaleContract = (signer?: ethers.Signer | ethers.providers.Provider, address?: string) => {
+export const getTokenPreSaleContract = (signer?: ethers.Signer | ethers.providers.Provider) => {
   return getContract(TokenPreSaleAbi, getTokenPreSaleAddress(), signer) as TokenPreSaleContract
 }
