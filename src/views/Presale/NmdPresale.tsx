@@ -1,16 +1,17 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
 import { Heading, Button, Input } from '@pancakeswap/uikit'
 import { formatBigNumber } from 'utils/formatBalance'
-import { useGetBnbBalance, useSetNMDTokenprice, useGetTotalTokenSold, useGetNMDTokenprice, useBuyNMDToken } from './PreSaleTokenModal';
+import { useGetBnbBalance, useGetTotalTokenSold, useGetNMDTokenprice, useBuyNMDToken } from './PreSaleTokenModal';
 
 const NmdPresale = () => {
-    
-  const { onSetNMDTokenprice } = useSetNMDTokenprice()
+
+  const floorTokenAmount = 0.00001
+
   const { onGetNMDTokenprice } = useGetNMDTokenprice()
   const { onGetTotalTokenSold } = useGetTotalTokenSold()
   const { onBuyNMDToken } = useBuyNMDToken()
   const balance = useGetBnbBalance()
-  
+
   const [tokenAmountPerBNB, setTokenAmountPerBNB] = useState(0);
   const [totaltokensold, setTotalTokenSold] = useState(0)
   const [raisedBNB, setRaisedBNB] = useState("");
@@ -20,6 +21,7 @@ const NmdPresale = () => {
   const [pendingTx, setPendingTx] = useState(false)
   const [timeup, setTimeup] = useState(false)
   const [count, setCount] = useState(false)
+  const [status, setStatus] = useState("")
 
   setTimeout(() => {
     const set = !timeup
@@ -57,22 +59,46 @@ const NmdPresale = () => {
   };
 
   useEffect(() => {
-    setBNBAmount(tokenAmount / 100000);
-    if ((tokenAmount / 100000) < 0.01) setBNBStatus("BNB Amount should be over 0.01");
+    setBNBAmount(tokenAmount / tokenAmountPerBNB);
+    if ((tokenAmount / tokenAmountPerBNB) < floorTokenAmount) setBNBStatus(`BNB Amount should be over ${floorTokenAmount}`);
     else setBNBStatus("");
-  }, [tokenAmount])
-  
+  }, [tokenAmount, tokenAmountPerBNB])
+
   const handleBuyPressed = async () => { 
+
+    if ((tokenAmount / tokenAmountPerBNB) < floorTokenAmount)
+    {
+        setStatus(`BNB Amount should be over ${floorTokenAmount}`)
+        return false;
+    }
+
     setPendingTx(true);
     try{
-        // await onBuyNMDToken()
+        const txHash = await onBuyNMDToken()
         setPendingTx(false);
+        setStatus(`✅ Check out your transaction on bscscan: https://testnet.bscscan.com/tx/${txHash}`)
+        return true
     }
     catch (e)
     {
-        setPendingTx(false);
+        setPendingTx(false)
+        setStatus(`😥 Something went wrong: ${e}`)
+        return true
     }
   };
+
+  const renderStatusString = () => {
+    return (
+      <p>
+        {" "}
+        🦊{" "}
+        <a target="_blank" href="https://metamask.io/download.html" rel="noreferrer">
+          You must install Metamask, a virtual Ethereum wallet, in your
+          browser.
+        </a>
+      </p>
+    );  
+  }
 
   return (
     <div>
@@ -89,7 +115,7 @@ const NmdPresale = () => {
           <Heading scale="xl" color="secondary" mb="24px">
           NMD amount
           </Heading>
-          
+
           <Input
             id="buyTokenAmount"
             placeholder=""
@@ -110,6 +136,10 @@ const NmdPresale = () => {
           <Button id="buyButton" onClick={handleBuyPressed} >
             BUY NMD Token
           </Button>
+
+          <Heading id = "status" color='red' mb="20px">
+            {status !== "renderStatusString" ? status : renderStatusString()}
+          </Heading>
 
           <Heading id = "pending" color='red' mb="20px">
             {pendingTx === true ? "pending" : ""}

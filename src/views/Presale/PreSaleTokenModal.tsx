@@ -85,97 +85,38 @@ export const useGetTotalTokenSold = () => {
   return { onGetTotalTokenSold: handleGetTotalTokenSold }
 }
 
+export const buyTokenUsingBNB = async (
+  contract: ethers.Contract,
+  collectionAddress: string,
+  tokenId: number,
+): Promise<string> => {
+  try {
+    const tx = await contract.buyTokenUsingBNB(collectionAddress, tokenId)
+    const receipt = await tx.wait()
+    return receipt.transactionHash
+  } catch (error) {
+    console.error(error)
+    return null
+  }
+}
+
 export const useBuyNMDToken = () => {
   const tokenPreSaleContract = useTokenPreSaleContract()
 
   const handleBuyNMDToken = useCallback(
-    async ( tokenprice : number) => {
+    async () => {
       try {
-        // await tokenPreSaleContract.setTokenPrice(tokenprice)
-        //
+        const tx = await tokenPreSaleContract.buyTokens()
+        const receipt = await tx.wait()
+        return receipt.transactionHash
       } catch(e)
       {
         console.error('Failed to BuyToken', e)
+        return null
       }
     },
-    [],
+    [tokenPreSaleContract],
   )
 
   return { onBuyNMDToken: handleBuyNMDToken }
-}
-
-// export const useSetNMDTokenprice = () => {
-//   const dispatch = useAppDispatch()
-//   const { account } = useWeb3React()
-//   const masterChefContract = useMasterchef()
-//   const sousChefContract = useSousChef(sousId)
-
-//   const handleSetNMDTokenprice = useCallback(
-//     async (amount: string, decimals: number) => {
-//       if (sousId === 0) {
-//         await stakeFarm(masterChefContract, 0, amount)
-//       } else if (isUsingBnb) {
-//         await sousStakeBnb(sousChefContract, amount)
-//       } else {
-//         // await sousStake(sousChefContract, amount, decimals)
-//         await stakeFarm(masterChefContract, sousId, amount)
-//       }
-//       dispatch(updateUserStakedBalance(sousId, account))
-//       dispatch(updateUserBalance(sousId, account))
-//     },
-//     [account, dispatch, isUsingBnb, masterChefContract, sousChefContract, sousId],
-//   )
-
-//   return { onSetNMDTokenprice: handleSetNMDTokenprice }
-// }
-
-export const GetTokenPrice = () => {
-  const [tokenAmountPerBNB, setNMDTokenPrice] = useState(0)
-  const tokenPreSaleContract = useTokenPreSaleContract()
-
-  useEffect(() => {
-    const fetchBurnedCakeAmount = async () => {
-      try {
-        const price = await tokenPreSaleContract.getTokenPrice()
-        setNMDTokenPrice(price.toNumber());
-      } catch (error) {
-        console.error('Failed to fetch burned auction cake', error)
-      }
-    }
-    fetchBurnedCakeAmount()
-  }, [tokenAmountPerBNB, tokenPreSaleContract])
-  return tokenAmountPerBNB
-}
-
-export const SetTokenPrice = (newtokenprice) => {
-  const tokenPreSaleContract = useTokenPreSaleContract()
-
-  const fetchBurnedCakeAmount = async () => {
-    try {
-      await tokenPreSaleContract.setTokenPrice(newtokenprice)
-      return true
-    } catch (error) {
-      console.error('Failed to fetch burned auction cake', error)
-      return false
-    }
-  }
-  fetchBurnedCakeAmount()
-}
-
-export const BuyToken = (bnbAmount) => {
-  const [tokenAmountPerBNB, setNMDTokenPrice] = useState(0)
-  const tokenPreSaleContract = useTokenPreSaleContract()
-
-  useEffect(() => {
-    const fetchBurnedCakeAmount = async () => {
-      try {
-        const price = await tokenPreSaleContract.getTokenPrice()
-        setNMDTokenPrice(price.toNumber());
-      } catch (error) {
-        console.error('Failed to fetch burned auction cake', error)
-      }
-    }
-    fetchBurnedCakeAmount()
-  }, [tokenAmountPerBNB, tokenPreSaleContract])
-  return { tokenAmountPerBNB }
 }
