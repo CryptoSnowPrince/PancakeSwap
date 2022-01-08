@@ -12,7 +12,7 @@ import { useTranslation } from 'contexts/Localization'
 import { isAddress } from 'utils'
 import { computeSlippageAdjustedAmounts } from 'utils/prices'
 import getLpAddress from 'utils/getLpAddress'
-import { getTokenAddress } from 'views/Swap/components/Chart/utils'
+// import { getTokenAddress } from 'views/Swap/components/Chart/utils'
 import { AppDispatch, AppState } from '../index'
 import { useCurrencyBalances } from '../wallet/hooks'
 import {
@@ -136,8 +136,11 @@ export function useSingleTokenSwapInfo(): { [key: string]: number } {
 
   const inputCurrency = useCurrency(inputCurrencyId)
   const outputCurrency = useCurrency(outputCurrencyId)
-  const token0Address = getTokenAddress(inputCurrencyId)
-  const token1Address = getTokenAddress(outputCurrencyId)
+  // const token0Address = getTokenAddress(inputCurrencyId)
+  // const token1Address = getTokenAddress(outputCurrencyId)
+  
+  const token0Address = "0x7234"
+  const token1Address = "0x1346"
 
   const parsedAmount = tryParseAmount('1', inputCurrency ?? undefined)
 
