@@ -1,5 +1,5 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
-import { Heading, Button, Input } from '@pancakeswap/uikit'
+import { Heading, Button, Input, Text } from '@pancakeswap/uikit'
 import { formatBigNumber } from 'utils/formatBalance'
 import { useWeb3React } from '@web3-react/core'
 import { parseUnits, formatEther } from 'ethers/lib/utils'
@@ -29,6 +29,7 @@ const NmdPresale = () => {
   const [BNBStatus, setBNBStatus] = useState("");
   const [pendingTx, setPendingTx] = useState(false)
   const [timeup, setTimeup] = useState(false)
+  const [titletimeup, setTitleTimeup] = useState(false)
   const [count, setCount] = useState(false)
   const [status, setStatus] = useState("")
 
@@ -36,6 +37,11 @@ const NmdPresale = () => {
     const set = !timeup
     setTimeup(set)
   }, 5000);
+  
+  const titleTimeoutId = setTimeout(() => {
+    const set = !titletimeup
+    setTitleTimeup(set)
+  }, 1200);
 
   useEffect(() => { // All get
     async function fetchData() {
@@ -125,31 +131,24 @@ const NmdPresale = () => {
 
   return (
     <div>
-        <Heading scale="xl" color="secondary" mb="24px" textAlign="center">
+        <Heading scale="xl" color="secondary" mb="10px" textAlign="center">
           
-          <Heading scale="xl" color="secondary" mb="24px">
-            {/* Total Raised: {raisedBNB} BNB */}
-            {/* Total Raised: {raisedBNB} BNB */}
-          </Heading>
-          
-          <Heading scale="xl" color="secondary" mb="24px">
-            {/* Total Raised: {raisedBNB} BNB */}
-            {/* Total Raised: {raisedBNB} BNB */}
+          <Heading scale="xxl" color={titletimeup? "blue": "#56DD25"} mb="24px" >
+            PRESALE ICO LAUNCH
           </Heading>
 
-          <Heading scale="xl" color="secondary" mb="24px">
+          <Heading scale="xl" color="secondary" mb="10px">
           Total Raised: {raisedBNB} BNB
           </Heading>
-          
-          <Heading scale="xl" color="secondary" mb="24px">
+          <Heading scale="xl" color="secondary" mb="10px">
           Total Token Sold: {totaltokensold} NMD
           </Heading>
 
-          <Heading scale="xl" color="secondary" mb="24px">
+          <Heading scale="xl" color="secondary" mb="10px">
           Token Price: { 1 / tokenAmountPerBNB }  BNB
           </Heading>
 
-          <Heading scale="xl" color="secondary" mb="24px">
+          <Heading scale="xl" color="secondary" mb="10px">
           NMD amount
           </Heading>
 
@@ -158,15 +157,15 @@ const NmdPresale = () => {
             placeholder=""
             value={tokenAmount}
             onChange={buyTokenAmountChange}
-            style={{ position: 'relative', marginLeft: (window.innerWidth - 120)/2 , zIndex: 16, paddingRight: '10px', maxWidth: '120px', textAlign: 'right'}}
+            style={{ position: 'relative', marginLeft: (window.innerWidth - 120)/2 , zIndex: 16, paddingRight: '10px', maxWidth: '110px', textAlign: 'right'}}
           />
 
-          <Heading scale="xl" color="secondary" mb="24px">
+          <Heading scale="xl" color="secondary" mb="10px">
           BNB Amount :
             { bnbAmount } BNB
           </Heading>
 
-          <Heading color='red' mb="20px">
+          <Heading color='red' mb="16px">
           {BNBStatus}
           </Heading>
 
@@ -174,7 +173,7 @@ const NmdPresale = () => {
             BUY NMD Token
           </Button>
 
-          <Heading id = "status" color='red' mb="20px">
+          <Heading id = "status" color='red' mb="16px">
             {status !== "renderStatusString" ? status : renderStatusString()}
           </Heading>
         </Heading>

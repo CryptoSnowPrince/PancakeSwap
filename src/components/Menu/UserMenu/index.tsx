@@ -7,6 +7,7 @@ import {
   UserMenu as UIKitUserMenu,
   UserMenuDivider,
   UserMenuItem,
+  Text,
 } from '@pancakeswap/uikit'
 import history from 'routerHistory'
 import useAuth from 'hooks/useAuth'
