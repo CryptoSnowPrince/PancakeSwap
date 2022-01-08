@@ -56,3 +56,5 @@ cypress.json
 netlify.toml
 *.ico
 public/locales/
+.firebaserc
+firebase.json
