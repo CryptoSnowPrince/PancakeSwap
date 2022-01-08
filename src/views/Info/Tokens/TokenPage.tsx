@@ -13,7 +13,7 @@ import {
   Breadcrumbs,
   Link as UIKitLink,
   LinkExternal,
-  Spinner,
+  // Spinner,
   Image,
   useMatchBreakpoints,
 } from '@pancakeswap/uikit'
@@ -245,7 +245,7 @@ const TokenPage: React.FC<RouteComponentProps<{ address: string }>> = ({
         )
       ) : (
         <Flex mt="80px" justifyContent="center">
-          <Spinner />
+          {/* <Spinner /> */}
         </Flex>
       )}
     </Page>

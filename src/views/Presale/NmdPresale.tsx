@@ -126,7 +126,21 @@ const NmdPresale = () => {
   return (
     <div>
         <Heading scale="xl" color="secondary" mb="24px" textAlign="center">
-        Total Raised: {raisedBNB} BNB
+          
+          <Heading scale="xl" color="secondary" mb="24px">
+            {/* Total Raised: {raisedBNB} BNB */}
+            {/* Total Raised: {raisedBNB} BNB */}
+          </Heading>
+          
+          <Heading scale="xl" color="secondary" mb="24px">
+            {/* Total Raised: {raisedBNB} BNB */}
+            {/* Total Raised: {raisedBNB} BNB */}
+          </Heading>
+
+          <Heading scale="xl" color="secondary" mb="24px">
+          Total Raised: {raisedBNB} BNB
+          </Heading>
+          
           <Heading scale="xl" color="secondary" mb="24px">
           Total Token Sold: {totaltokensold} NMD
           </Heading>

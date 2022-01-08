@@ -9,7 +9,7 @@ import {
   Card,
   Breadcrumbs,
   Heading,
-  Spinner,
+  // Spinner,
   LinkExternal,
   useMatchBreakpoints,
   ButtonMenu,
@@ -266,7 +266,7 @@ const PoolPage: React.FC<RouteComponentProps<{ address: string }>> = ({
         </>
       ) : (
         <Flex mt="80px" justifyContent="center">
-          <Spinner />
+          {/* <Spinner /> */}
         </Flex>
       )}
     </Page>

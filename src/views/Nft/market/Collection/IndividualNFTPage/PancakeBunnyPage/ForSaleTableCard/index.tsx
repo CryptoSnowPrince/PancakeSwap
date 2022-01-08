@@ -12,7 +12,7 @@ import {
   ArrowUpIcon,
   ArrowDownIcon,
   Button,
-  Spinner,
+  // Spinner,
 } from '@pancakeswap/uikit'
 import { useTranslation } from 'contexts/Localization'
 import useTheme from 'hooks/useTheme'
@@ -87,7 +87,7 @@ const ForSaleTableCard: React.FC<ForSaleTableCardProps> = ({
 
   const loadMoreButton = isFetchingMoreNfts ? (
     <Flex width="96px" justifyContent="center">
-      <Spinner size={32} />
+      {/* <Spinner size={32} /> */}
     </Flex>
   ) : (
     <Button variant="primary" scale="xs" ml="12px" onClick={loadMoreHandler}>

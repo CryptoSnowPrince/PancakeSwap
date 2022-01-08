@@ -28,7 +28,7 @@ const ConfirmStage: React.FC<ConfirmStageProps> = ({ isConfirming, handleConfirm
           </Text>
         </Flex>
         <Flex flex="0 0 64px" height="72px" width="64px">
-          {isConfirming && <Spinner size={64} />}
+          {/* {isConfirming && <Spinner size={64} />} */}
         </Flex>
       </Flex>
       <Button mt="24px" disabled={isConfirming} onClick={handleConfirm} variant="secondary">

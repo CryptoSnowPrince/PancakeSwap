@@ -49,7 +49,7 @@ const ApproveAndConfirmStage: React.FC<ApproveAndConfirmStageProps> = ({
           )}
         </Flex>
         <Flex flex="0 0 64px" width="64px">
-          {isApproving && <Spinner size={64} />}
+          {/* {isApproving && <Spinner size={64} />} */}
         </Flex>
       </Flex>
       {!isApproved && (
@@ -74,7 +74,7 @@ const ApproveAndConfirmStage: React.FC<ApproveAndConfirmStageProps> = ({
           </Text>
         </Flex>
         <Flex flex="0 0 64px" width="64px">
-          {isConfirming && <Spinner size={64} />}
+          {/* {isConfirming && <Spinner size={64} />} */}
         </Flex>
       </Flex>
       <Button mt="16px" disabled={!isApproved || isConfirming} onClick={handleConfirm} variant="secondary">

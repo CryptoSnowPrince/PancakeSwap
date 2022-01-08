@@ -44,9 +44,9 @@ interface CountdownCircleProps {
 }
 
 const CountdownCircle: React.FC<CountdownCircleProps> = ({ secondsRemaining, isUpdating }) => {
-  if (secondsRemaining < 1 || isUpdating) {
-    return <Spinner size={42} />
-  }
+  // if (secondsRemaining < 1 || isUpdating) {
+  //   return <Spinner size={42} />
+  // }
   return (
     <CountdownContainer>
       <Text color="textSubtle" lineHeight="40px" display="inline-block">
