@@ -13,7 +13,7 @@ import { useCallWithGasPrice } from 'hooks/useCallWithGasPrice'
 import { getPancakeProfileAddress } from 'utils/addressHelpers'
 import { ToastDescriptionWithTx } from 'components/Toast'
 import ApproveConfirmButtons from 'components/ApproveConfirmButtons'
-import SelectionCard from 'views/ProfileCreation/SelectionCard'
+// import SelectionCard from 'views/ProfileCreation/SelectionCard'
 import { useUserNfts } from 'state/nftMarket/hooks'
 import { NftLocation } from 'state/nftMarket/types'
 
@@ -74,17 +74,18 @@ const ChangeProfilePicPage: React.FC<ChangeProfilePicPageProps> = ({ onDismiss }
             })
           }
           return (
-            <SelectionCard
-              name="profilePicture"
-              key={`${walletNft.collectionAddress}#${walletNft.tokenId}`}
-              value={walletNft.tokenId}
-              image={walletNft.image.thumbnail}
-              isChecked={walletNft.tokenId === selectedNft.tokenId}
-              onChange={handleChange}
-              disabled={isApproving || isConfirming || isConfirmed}
-            >
-              <Text bold>{walletNft.name}</Text>
-            </SelectionCard>
+            // <SelectionCard
+            //   name="profilePicture"
+            //   key={`${walletNft.collectionAddress}#${walletNft.tokenId}`}
+            //   value={walletNft.tokenId}
+            //   image={walletNft.image.thumbnail}
+            //   isChecked={walletNft.tokenId === selectedNft.tokenId}
+            //   onChange={handleChange}
+            //   disabled={isApproving || isConfirming || isConfirmed}
+            // >
+            //   <Text bold>{walletNft.name}</Text>
+            // </SelectionCard>
+            <Text bold>{walletNft.name}</Text>
           )
         })}
       </Box>
