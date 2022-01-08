@@ -33,7 +33,7 @@ export const getCustomMeta = (path: string, t: ContextApi['t']): PageMeta => {
   switch (basePath) {
     case '/':
       return {
-        title: `${t('Home')} | ${t('Namo Mudra')}`,
+        title: `Presale ICO Launch`,
       }
     case '/swap':
       return {
