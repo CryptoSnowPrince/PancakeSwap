@@ -1,16 +1,25 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
 import { Heading, Button, Input } from '@pancakeswap/uikit'
 import { formatBigNumber } from 'utils/formatBalance'
-import { useGetBnbBalance, useGetTotalTokenSold, useGetNMDTokenprice, useBuyNMDToken } from './PreSaleTokenModal';
+import { useWeb3React } from '@web3-react/core'
+import { parseUnits, formatEther } from 'ethers/lib/utils'
+import { useCallWithGasPrice } from 'hooks/useCallWithGasPrice'
+import { useTokenPreSaleContract } from 'hooks/useContract'
+import { getTokenPreSaleAddress } from 'utils/addressHelpers'
+import { useGetBnbBalance, useGetTotalTokenSold, useGetNMDTokenprice } from './PreSaleTokenModal';
 
 const NmdPresale = () => {
 
-  const floorTokenAmount = 0.00001
+  const floorTokenAmount = 0.0001
+  const floorGasPrice = 0.001
 
+  const tokenPreSaleContract = useTokenPreSaleContract()
   const { onGetNMDTokenprice } = useGetNMDTokenprice()
   const { onGetTotalTokenSold } = useGetTotalTokenSold()
-  const { onBuyNMDToken } = useBuyNMDToken()
-  const balance = useGetBnbBalance()
+  const { callWithGasPrice } = useCallWithGasPrice()
+  const { account } = useWeb3React()
+  const balanceOfTokenPreSale = useGetBnbBalance(getTokenPreSaleAddress())
+  const balanceOfUser = useGetBnbBalance(account);
 
   const [tokenAmountPerBNB, setTokenAmountPerBNB] = useState(0);
   const [totaltokensold, setTotalTokenSold] = useState(0)
@@ -35,7 +44,7 @@ const NmdPresale = () => {
             setCount(timeup)
             setTokenAmountPerBNB(await onGetNMDTokenprice())
             setTotalTokenSold(await onGetTotalTokenSold())
-            setRaisedBNB(formatBigNumber(balance, 6))
+            setRaisedBNB(formatBigNumber(balanceOfTokenPreSale, 6))
             setPendingTx(false);
         }
         catch (e)
@@ -45,7 +54,7 @@ const NmdPresale = () => {
         }
     }
     fetchData();
-  }, [onGetNMDTokenprice, tokenAmountPerBNB, onGetTotalTokenSold, totaltokensold, balance, timeup, setCount])
+  }, [onGetNMDTokenprice, tokenAmountPerBNB, onGetTotalTokenSold, totaltokensold, balanceOfUser, balanceOfTokenPreSale, timeup, setCount])
 
   const buyTokenAmountChange = (evt: ChangeEvent<HTMLInputElement>) => {
     if (Number.isNaN(parseInt(evt.target.value)) === true)
@@ -69,32 +78,46 @@ const NmdPresale = () => {
     if ((tokenAmount / tokenAmountPerBNB) < floorTokenAmount)
     {
         setStatus(`BNB Amount should be over ${floorTokenAmount}`)
-        return false;
+        return false
     }
-
-    setPendingTx(true);
+    
+    if ( (parseFloat(formatEther(balanceOfUser)) === 0) || (bnbAmount - floorGasPrice > parseFloat(formatEther(balanceOfUser))))
+    {
+        setStatus(`BNB Amount is not enough. Your Wallet Amount: ${formatEther(balanceOfUser)}`)
+        return false
+    }
+    
+    setPendingTx(true)
     try{
-        const txHash = await onBuyNMDToken()
-        setPendingTx(false);
-        setStatus(`✅ Check out your transaction on bscscan: https://testnet.bscscan.com/tx/${txHash}`)
+        const tx = await callWithGasPrice(tokenPreSaleContract, 'buyTokens', [], { 
+            value: parseUnits(bnbAmount.toString()) })
+        const receipt = await tx.wait()
+
+        if (receipt.transactionHash)
+        {
+            setStatus(`✅ Check out your transaction on bscscan: https://testnet.bscscan.com/tx/${receipt.transactionHash}`)
+        }
+        else
+        {
+            setStatus(`😥 transaction fail!`)
+        }
+        setPendingTx(false)
         return true
     }
     catch (e)
     {
         setPendingTx(false)
         setStatus(`😥 Something went wrong: ${e}`)
-        return true
+        return false
     }
   };
-
   const renderStatusString = () => {
     return (
       <p>
         {" "}
         🦊{" "}
         <a target="_blank" href="https://metamask.io/download.html" rel="noreferrer">
-          You must install Metamask, a virtual Ethereum wallet, in your
-          browser.
+          You must install Metamask, in your browser.
         </a>
       </p>
     );  
@@ -139,11 +162,6 @@ const NmdPresale = () => {
 
           <Heading id = "status" color='red' mb="20px">
             {status !== "renderStatusString" ? status : renderStatusString()}
-          </Heading>
-
-          <Heading id = "pending" color='red' mb="20px">
-            {pendingTx === true ? "pending" : ""}
-            count={count.toString()}
           </Heading>
         </Heading>
       </div>

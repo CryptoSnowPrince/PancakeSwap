@@ -1,13 +1,12 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { ethers } from 'ethers'
-import { getTokenPreSaleAddress } from 'utils/addressHelpers'
+import { formatEther } from 'ethers/lib/utils'
 import { simpleRpcProvider } from 'utils/providers'
 
 import { useTokenPreSaleContract } from 'hooks/useContract'
 
-export const useGetBnbBalance = () => {
+export const useGetBnbBalance = (account) => {
   const [balance, setBalance] = useState(ethers.BigNumber.from(0))
-  const account = getTokenPreSaleAddress();
 
   useEffect(() => {
     const fetchBalance = async () => {
@@ -71,8 +70,8 @@ export const useGetTotalTokenSold = () => {
   const handleGetTotalTokenSold = useCallback(
     async () => {
       try {
-        const totaTokeSold = await tokenPreSaleContract.totalsold()
-        return totaTokeSold.toNumber()
+        const totaTokenSold = await tokenPreSaleContract.totalsold()
+        return parseFloat(formatEther(totaTokenSold))
       } catch(e)
       {
         console.error('Failed to setTokenPrice', e)
@@ -98,25 +97,4 @@ export const buyTokenUsingBNB = async (
     console.error(error)
     return null
   }
-}
-
-export const useBuyNMDToken = () => {
-  const tokenPreSaleContract = useTokenPreSaleContract()
-
-  const handleBuyNMDToken = useCallback(
-    async () => {
-      try {
-        const tx = await tokenPreSaleContract.buyTokens()
-        const receipt = await tx.wait()
-        return receipt.transactionHash
-      } catch(e)
-      {
-        console.error('Failed to BuyToken', e)
-        return null
-      }
-    },
-    [tokenPreSaleContract],
-  )
-
-  return { onBuyNMDToken: handleBuyNMDToken }
 }
