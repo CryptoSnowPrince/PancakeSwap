@@ -58,3 +58,4 @@ netlify.toml
 public/locales/
 .firebaserc
 firebase.json
+*.zip
