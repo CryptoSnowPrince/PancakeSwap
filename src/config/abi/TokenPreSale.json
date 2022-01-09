@@ -80,6 +80,19 @@
 		"type": "event"
 	},
 	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "address",
+				"name": "owner",
+				"type": "address"
+			}
+		],
+		"name": "Withdraw2Owner",
+		"type": "event"
+	},
+	{
 		"inputs": [],
 		"name": "buyTokens",
 		"outputs": [],
@@ -195,11 +208,36 @@
 		"inputs": [
 			{
 				"internalType": "address",
+				"name": "receiveaddr",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "amount",
+				"type": "uint256"
+			}
+		],
+		"name": "transfer2wallet",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
 				"name": "newOwner",
 				"type": "address"
 			}
 		],
 		"name": "transferOwnership",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "withdraw2Owner",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"

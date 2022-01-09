@@ -29,7 +29,6 @@ const NmdPresale = () => {
   const [BNBStatus, setBNBStatus] = useState("");
   const [pendingTx, setPendingTx] = useState(false)
   const [timeup, setTimeup] = useState(false)
-  // const [titletimeup, setTitleTimeup] = useState(false)
   const [count, setCount] = useState(false)
   const [status, setStatus] = useState("")
 
@@ -38,11 +37,6 @@ const NmdPresale = () => {
     setTimeup(set)
   }, 5000);
   
-  // const titleTimeoutId = setTimeout(() => {
-  //   const set = !titletimeup
-  //   setTitleTimeup(set)
-  // }, 1200);
-
   useEffect(() => { // All get
     async function fetchData() {
         setPendingTx(true);
@@ -133,7 +127,6 @@ const NmdPresale = () => {
     <div>
         <Heading scale="xl" color="secondary" mb="10px" textAlign="center">
           
-          {/* <Heading scale="xxl" color={titletimeup? "blue": "#56DD25"} mb="24px" > */}
           <Heading scale="xxl" color="blue" mb="24px" >
             PRESALE ICO LAUNCH
           </Heading>
