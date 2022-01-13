@@ -28,6 +28,7 @@ const NmdPresale = () => {
   const [tokenAmount, setTokenAmount] = useState(0);
   const [BNBStatus, setBNBStatus] = useState("");
   const [pendingTx, setPendingTx] = useState(false)
+  const [pendingBuyTx, setPendingBuyTx] = useState(false)
   const [timeup, setTimeup] = useState(false)
   const [count, setCount] = useState(false)
   const [status, setStatus] = useState("")
@@ -87,7 +88,7 @@ const NmdPresale = () => {
         return false
     }
     
-    setPendingTx(true)
+    setPendingBuyTx(true)
     try{
         const tx = await callWithGasPrice(tokenPreSaleContract, 'buyTokens', [], { 
             value: parseUnits(bnbAmount.toString()) })
@@ -95,18 +96,18 @@ const NmdPresale = () => {
 
         if (receipt.transactionHash)
         {
-            setStatus(`✅ Check out your transaction on bscscan: https://testnet.bscscan.com/tx/${receipt.transactionHash}`)
+            setStatus(`✅ Check out your transaction on bscscan: https://bscscan.com/tx/${receipt.transactionHash}`)
         }
         else
         {
             setStatus(`😥 transaction fail!`)
         }
-        setPendingTx(false)
+        setPendingBuyTx(false)
         return true
     }
     catch (e)
     {
-        setPendingTx(false)
+        setPendingBuyTx(false)
         setStatus(`😥 Something went wrong: ${e}`)
         return false
     }
@@ -163,7 +164,7 @@ const NmdPresale = () => {
           {BNBStatus}
           </Heading>
 
-          <Button id="buyButton" onClick={handleBuyPressed} >
+          <Button disabled={pendingBuyTx} id="buyButton" onClick={handleBuyPressed} >
             BUY NMD Token
           </Button>
 
